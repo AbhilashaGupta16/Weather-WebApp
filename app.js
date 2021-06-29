@@ -17,12 +17,10 @@ app.get("/",function(req,res){
 
 app.post("/",function(req,res){
     const city=req.body.city;
-    console.log(city);
 
     const url="https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=cb0d132afea713910fe1bbf72140135e&units=metric";      
     
     https.get(url,function(response){
-        console.log(response.statusCode);
         response.on("data",function(data){
             const weather=JSON.parse(data);
             const weatherTemp=weather.main.temp;
@@ -50,6 +48,6 @@ app.post("/",function(req,res){
 })
 
 
-app.listen(process.env.PORT|| 3000,function(){
+app.listen(process.env.PORT || 3000,function(){
     console.log("Server started at 3000");
 });
